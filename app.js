@@ -115,12 +115,13 @@ app.get("/user/:username/menu.html", function(req, res) {
 app.get("/user/:username/wishlist.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
 
+    const username = req.params.username;
   // Code de Guillaume
   // Récupérer la liste des souhaits sous forme d'un objet JSON
   // dans le dossier data en fonction du nom d'utilisateur.
   // ex : data/guillaume.json
 
-  const listDesWish = fs.rea
+  const listDesWish = "";
 
   // Renvoie le template de sa wishlist
   res.render("3.ejs", listeDesWish );
@@ -134,6 +135,16 @@ app.get("/user/:username/add.html", function(req, res) {
 
   // Renvoie le template de l'ajout d'un élément de sa wishlist
   res.render("4.ejs");
+});
+
+
+// Suppression d'un souhait
+app.get("/user/:username/delete.html", function(req, res) {
+  res.setHeader("Content-Type", "text/html");
+
+  // Code de bernard
+
+  res.send("Souhait supprimé");
 });
 
 // Traitement de l'ajout d'un souhait
