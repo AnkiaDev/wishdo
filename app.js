@@ -120,8 +120,10 @@ app.get("/user/:username/wishlist.html", function(req, res) {
   // dans le dossier data en fonction du nom d'utilisateur.
   // ex : data/guillaume.json
 
+  const listDesWish = fs.rea
+
   // Renvoie le template de sa wishlist
-  res.render("3.ejs");
+  res.render("3.ejs", listeDesWish );
 });
 
 // Ajout d'un souhait
