@@ -71,7 +71,7 @@ app.get("/user/{USERNAME}/wishlist/edit", function(req, res) {
   // le code que tu viens d'écrire
 
   // Renvoie le template de la modification de sa wishlist
-  res.render("wishlist-edit.ejs");
+  res.render("6.ejs");
 });
 
 // PAGE QUI MONTRE LA LISTE DES AUTRES WISHLIST
