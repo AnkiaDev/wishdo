@@ -1,12 +1,9 @@
 // Importation des modules nécessaires à l'application
 var express = require("express"); // Express
-var ejs = require("ejs"); // ejs
 var fs = require("fs"); // fs
-
 
 // Déclaration que l'application est une instance de express()
 var app = express();
-
 
 // ------ LES ROUTES --------
 // Page par défaut
@@ -22,16 +19,16 @@ app.get("/connexion.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
 
   // Code de Valérie
-  if(connexion() === true) { // Il faut créer la fonction "connexion"
+  if (connexion() === true) {
+    // Il faut créer la fonction "connexion"
     res.render("2.ejs");
   } else {
     res.render("error.ejs");
   }
-  
+
   // Renvoie le template de connexion
   res.render("2.ejs");
 });
-
 
 // Page d'inscription
 app.get("/register.html", function(req, res) {
@@ -39,7 +36,6 @@ app.get("/register.html", function(req, res) {
 
   // Renvoie le template d'inscription
   res.render("10.ejs");
-
 });
 
 // Page de traitement de l'inscription
@@ -47,7 +43,7 @@ app.get("/register_go.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
 
   // Code de Jean-Claude
-/*
+  /*
   var params = querystring.parse(url.parse(req.url).query);
 
   var json_users = fs.readFileSync("./data/json_users.json");
@@ -87,11 +83,11 @@ app.get("/register_go.html", function(req, res) {
   else {
       res.send("Veuillez remplir TOUS les champs");
   }
-*/ 
-//fin code de JC
+*/
+
+  //fin code de JC
   // Renvoie le template d'inscription
   res.render("11.ejs");
-
 });
 
 // Menu principal
@@ -100,7 +96,7 @@ app.get("/user/:username/menu.html", function(req, res) {
 
   // Code de Valérie
   // Qui doit récupérer le nom de l'utilisateur
-  
+
   // Renvoie le template une fois connecté
   res.render("2.ejs");
 });
@@ -113,7 +109,7 @@ app.get("/user/:username/wishlist.html", function(req, res) {
   // Récupérer la liste des souhaits sous forme d'un objet JSON
   // dans le dossier data en fonction du nom d'utilisateur.
   // ex : data/guillaume.json
-  
+
   // Renvoie le template de sa wishlist
   res.render("3.ejs", ma_liste);
 });
@@ -146,7 +142,6 @@ app.get("/user/:username/edit.html", function(req, res) {
   res.render("6.ejs");
 });
 
-
 // Traitement de la modification d'un souhait
 app.get("/user/:username/edit_go.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
@@ -166,7 +161,6 @@ app.get("/user/:username/others.html", function(req, res) {
   // Renvoie le template de la liste des autres wishlist
   res.render("7.ejs");
 });
-
 
 // Liste des souhaits d'un autre utilisateur
 app.get("/user/:username/others/:othername.html", function(req, res) {
