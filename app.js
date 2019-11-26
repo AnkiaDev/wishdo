@@ -6,6 +6,8 @@ var fs = require("fs"); // fs
 // Déclaration que l'application est une instance de express()
 var app = express();
 
+app.use("/css", express.static("./css"));
+
 // ------ LES ROUTES --------
 // Page par défaut
 app.get("/", function(req, res) {
@@ -119,7 +121,7 @@ app.get("/user/:username/wishlist.html", function(req, res) {
   // ex : data/guillaume.json
 
   // Renvoie le template de sa wishlist
-  res.render("3.ejs", ma_liste);
+  res.render("3.ejs");
 });
 
 // Ajout d'un souhait
