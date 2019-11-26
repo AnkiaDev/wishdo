@@ -47,7 +47,48 @@ app.get("/register_go.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
 
   // Code de Jean-Claude
+/*
+  var params = querystring.parse(url.parse(req.url).query);
 
+  var json_users = fs.readFileSync("./data/json_users.json");
+
+// je vérifie que les information sont existantes
+  if ('prenom' in params && 'password' in params) {
+
+       // Si le nom existe je stop et j'envois vers un page récupération de login
+      if ( params['nom'] === json_users[util][nom] ) {
+          console.log(params['nom']);
+          console.log(json_users[util][nom]);
+          res.send("cet utilisateur existe déjà , voullez vous récuperer votre mot de pass ?");
+      } else {
+          // si le nom n'existe pas j'ajoute le wisher a la liste
+          // je crée l'objer user
+          var user = {
+              "prenom": params['prenom'],
+              "password": params['password']
+           };
+           console.log(user);
+           new_json_users = json_users.push(user);
+           console.log(new_json_users);   
+              // j'ecris le nouveau json_users
+          var path = 
+              fs.writeFile(path, new_json_users, function(err) {
+                  if(err) {
+                      res.send("Désolé une erreur est survenue...");
+                      console.error(err);
+                      throw error;
+                  } else {
+                      res.render('11.ejs', { utilisateur: req.params.utilisateur });
+                  }
+              });
+      }
+
+  }
+  else {
+      res.send("Veuillez remplir TOUS les champs");
+  }
+*/ 
+//fin code de JC
   // Renvoie le template d'inscription
   res.render("11.ejs");
 
