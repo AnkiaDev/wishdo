@@ -6,27 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>WishDo Accueil</title>
   </head>
-    <body>
-        <header>
-            <h1>WISHDOW</h1>
-        </header>
-        <main>
-            <!-- Formulaire de connexion -->
-            <div class="form">
-                <label for="name">Nom</label>
-                <input type="text" name="name" id="name" required />
-            </div>
-            <div class="form">
-                <label for="password">Mot de passe</label>
-                <input type="password" name="password" id="password" required />
-            </div>
-            <div class="form">
-                <input type="submit" value="OK" />
-            </div>
-            </form>
-            <!-- Liens mot de passe et inscription -->
-            <p>J'ai oublié mon mot de passe <a href=""></a></p>
-            <p>M'inscrire<a href=""></a></p>
-        </main>
-    </body>
+  <body>
+    <header>
+      <h1>WISHDO</h1>
+    </header>
+    <main>
+      <!-- Formulaire de connexion -->
+      <form action="menu.html" method="get">
+        <div class="form">
+          <label for="prenom">Prénom</label>
+          <input type="text" name="prenom" required />
+        </div>
+        <div class="form">
+          <label for="motdepasse">Mot de passe</label>
+          <input type="password" name="motdepasse" required />
+        </div>
+        <div class="form">
+          <input type="submit" value="OK" />
+        </div>
+      </form>
+      <!-- Lien inscription -->
+      <p><a href="/register">M'inscrire</a></p>
+    </main>
+  </body>
 </html>
