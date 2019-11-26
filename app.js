@@ -211,12 +211,34 @@ app.get("/user/:username/others/:othername.html", function(req, res) {
 // Détails d'un souhait
 app.get("/user/:username/others/:othername/details.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
-  // ICI C'EST POUR LE BIG BOSS, PAS TOUCHE!
+  // Créer un tableau associatif des queries renvoyées
+  var params = querystring.parse(url.parse(req.url).query);
+  
+  // Chemin de la wishlist d'un autre
+  const path = `data/${req.params.othername}.json`
 
-  // Code de Antonin !
-
-  // Renvoie le template de la modification de sa wishlist
-  res.render("9.ejs");
+  // On lit la wishlist d'autrui
+  fs.readFile(path, (err, data) => {
+    if (err) {
+      // Retourne une erreur 404
+      res.render("5.ejs");
+    } else {
+      // Récup. la wishlist de la personne,
+      // recherche quel souhait correspond à la query "nom" => nom du produit
+      const otherWishCard = JSON.parse(data).find(element => element.nom == params.nom);
+      if (otherWishCard) {
+        // Renvoie le template du détails d'un élément d'une wishlist d'un autre
+        res.render("9.ejs", {
+          othername: req.params.othername, // Nom de l'auteur de la wishlist
+          name: otherWishCard.nom, // Nom de l'élément de la wishlist
+          price: otherWishCard.prix, // Le prix de la wishlist
+          link: `${otherWishCard.url}`}); // Le lien externe vers le produit
+      } else {
+        // Retourne une erreur 404
+        res.render("5.ejs");
+      }
+    }
+  });
 });
 
 // 404
