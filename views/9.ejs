@@ -16,18 +16,22 @@
         </nav>
     </header>
     <main>
-            <h2>Nom de ami</h2>
-            <p> titre de l'article</p>
-            <p>Prix de l'article</p>
-            <a href="#url">url du wish</a> <!--  ouverture dans nouvelle fenetre -->
-            <button>Réservé</button>
-            <form action='jachete.html' method='get'> <!-- preventdefault -->   
-                <button type='submit'>j'offre ce wish</button>    
-            </form>
-            <form action='pareil.html' method='get'> <!-- preventdefault -->   
-                <button type='submit'>je veux le même</button>    
-            </form>
-            <button>Fermer</button>
+        <!-- Nom de la personne -->
+        <h2><%= othername %></h2>
+        <!-- Nom de l'élément -->
+        <p><%= name %></p>
+        <!-- Prix de l'élément -->
+        <p><%= price %>€</p>
+        <!-- Le lien externne de l'élément -->
+        <a href=<%= link %>>Voir le produit</a>
+        <button>Réservé</button>
+        <form action='jachete.html' method='get'> <!-- preventdefault -->   
+            <button type='submit'>j'offre ce wish</button>    
+        </form>
+        <form action='pareil.html' method='get'> <!-- preventdefault -->   
+            <button type='submit'>je veux le même</button>    
+        </form>
+        <button>Fermer</button>
     </main>
     <footer>
         @copyright
