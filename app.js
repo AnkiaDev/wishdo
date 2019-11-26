@@ -2,11 +2,14 @@
 var express = require("express"); // Express
 var ejs = require("ejs"); // ejs
 var fs = require("fs"); // fs
+var url = require("url"); //url
+var querystring = require("querystring"); //querystring
 
 // Déclaration que l'application est une instance de express()
 var app = express();
 
 app.use("/css", express.static("./css"));
+app.use("/images", express.static("./images"));
 
 // ------ LES ROUTES --------
 // Page par défaut
@@ -106,25 +109,45 @@ app.get("/user/:username/menu.html", function(req, res) {
 
   // Code de Valérie
   // Qui doit récupérer le nom de l'utilisateur
-
-  // Renvoie le template une fois connecté
-  res.render("2.ejs");
+  var params = querystring.parse(url.parse(req.url).query);
+  //si dans le tableau params les clés prenom et motdepasse sont présentes
+  if ("prenom" in params && "motdepasse" in params) {
+    //test des valeurs de prenom
+    //si vide, message d'erreur
+    if (params["prenom"] === "") {
+      res.setHeader("Content-Type", "text/html");
+      res.send("Tu n'as pas indiqué ton prénom");
+      //si on a bien un prénom
+    } else {
+      // Renvoie le template de connexion
+      res.setHeader("Content-Type", "text/html");
+      res.render("2.ejs", { utilisateur: params["prenom"] });
+    }
+  }
 });
 
 // Wishlist de l'utilisateur
 app.get("/user/:username/wishlist.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
 
-    const username = req.params.username;
   // Code de Guillaume
   // Récupérer la liste des souhaits sous forme d'un objet JSON
   // dans le dossier data en fonction du nom d'utilisateur.
   // ex : data/guillaume.json
 
-  const listDesWish = "";
-
-  // Renvoie le template de sa wishlist
-  res.render("3.ejs", listeDesWish );
+  const username = req.params.username;
+  const userWishListPath = `data/${username}.json`;
+  fs.readFile(userWishListPath, "utf8", function(err, data) {
+    if (err) {
+      throw err;
+    } else {
+      const jsonListOfWish = JSON.parse(data);
+      console.log("json dans le render", jsonListOfWish);
+      console.log("type du list of wish", typeof jsonListOfWish);
+      // Renvoie le template de sa wishlist
+      res.render("3.ejs", { list: jsonListOfWish });
+    }
+  });
 });
 
 // Ajout d'un souhait
@@ -136,7 +159,6 @@ app.get("/user/:username/add.html", function(req, res) {
   // Renvoie le template de l'ajout d'un élément de sa wishlist
   res.render("4.ejs");
 });
-
 
 // Suppression d'un souhait
 app.get("/user/:username/delete.html", function(req, res) {
@@ -190,20 +212,56 @@ app.get("/user/:username/others/:othername.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
 
   // Code de Guillaume
-
-  // Renvoie le template de la liste d'une autre personne humaine
-  res.render("8.ejs");
+  const othername = req.params.othername;
+  const userWishListPath = `data/${othername}.json`;
+  fs.readFile(userWishListPath, "utf8", function(err, data) {
+    if (err) {
+      throw err;
+    } else {
+      const jsonListOfWish = JSON.parse(data);
+      console.log("json dans le render", jsonListOfWish);
+      console.log("type du list of wish", typeof jsonListOfWish);
+      // Renvoie le template de la liste d'une autre personne humaine
+      res.render("8.ejs", { list: jsonListOfWish, user: othername });
+    }
+    //user.html?nom=nomduwish
+  });
 });
 
 // Détails d'un souhait
 app.get("/user/:username/others/:othername/details.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
-  // ICI C'EST POUR LE BIG BOSS, PAS TOUCHE!
+  // Créer un tableau associatif des queries renvoyées
+  var params = querystring.parse(url.parse(req.url).query);
 
-  // Code de Antonin !
+  // Chemin de la wishlist d'un autre
+  const path = `data/${req.params.othername}.json`;
 
-  // Renvoie le template de la modification de sa wishlist
-  res.render("9.ejs");
+  // On lit la wishlist d'autrui
+  fs.readFile(path, (err, data) => {
+    if (err) {
+      // Retourne une erreur 404
+      res.render("5.ejs");
+    } else {
+      // Récup. la wishlist de la personne,
+      // recherche quel souhait correspond à la query "nom" => nom du produit
+      const otherWishCard = JSON.parse(data).find(
+        element => element.nom == params.nom
+      );
+      if (otherWishCard) {
+        // Renvoie le template du détails d'un élément d'une wishlist d'un autre
+        res.render("9.ejs", {
+          othername: req.params.othername, // Nom de l'auteur de la wishlist
+          name: otherWishCard.nom, // Nom de l'élément de la wishlist
+          price: otherWishCard.prix, // Le prix de la wishlist
+          link: `${otherWishCard.url}`
+        }); // Le lien externe vers le produit
+      } else {
+        // Retourne une erreur 404
+        res.render("5.ejs");
+      }
+    }
+  });
 });
 
 // 404
