@@ -2,6 +2,8 @@
 var express = require("express"); // Express
 var ejs = require("ejs"); // ejs
 var fs = require("fs"); // fs
+var url = require("url"); //url
+var querystring = require("querystring"); //querystring
 
 // Déclaration que l'application est une instance de express()
 var app = express();
@@ -106,16 +108,28 @@ app.get("/user/:username/menu.html", function(req, res) {
 
   // Code de Valérie
   // Qui doit récupérer le nom de l'utilisateur
-
-  // Renvoie le template une fois connecté
-  res.render("2.ejs");
+  var params = querystring.parse(url.parse(req.url).query);
+  //si dans le tableau params les clés prenom et motdepasse sont présentes
+  if ("prenom" in params && "motdepasse" in params) {
+    //test des valeurs de prenom
+    //si vide, message d'erreur
+    if (params["prenom"] === "") {
+      res.setHeader("Content-Type", "text/html");
+      res.send("Tu n'as pas indiqué ton prénom");
+      //si on a bien un prénom
+    } else {
+      // Renvoie le template de connexion
+      res.setHeader("Content-Type", "text/html");
+      res.render("2.ejs", { utilisateur: params["prenom"] });
+    }
+  }
 });
 
 // Wishlist de l'utilisateur
 app.get("/user/:username/wishlist.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
 
-    const username = req.params.username;
+  const username = req.params.username;
   // Code de Guillaume
   // Récupérer la liste des souhaits sous forme d'un objet JSON
   // dans le dossier data en fonction du nom d'utilisateur.
@@ -124,7 +138,7 @@ app.get("/user/:username/wishlist.html", function(req, res) {
   const listDesWish = "";
 
   // Renvoie le template de sa wishlist
-  res.render("3.ejs", listeDesWish );
+  res.render("3.ejs", listeDesWish);
 });
 
 // Ajout d'un souhait
@@ -136,7 +150,6 @@ app.get("/user/:username/add.html", function(req, res) {
   // Renvoie le template de l'ajout d'un élément de sa wishlist
   res.render("4.ejs");
 });
-
 
 // Suppression d'un souhait
 app.get("/user/:username/delete.html", function(req, res) {
