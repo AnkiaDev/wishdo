@@ -1,4 +1,28 @@
-{"users": 
-    {"nom": "toto", "password": "roro"}
-    {"value": "titi", "onclick": "riri"}
+{
+  "users": [
+    {
+      "prenom": "laurent",
+      "password": "test"
+    },
+    {
+      "prenom": "bernard",
+      "password": "test"
+    },
+    {
+      "prenom": "lucas",
+      "password": "test"
+    },
+    {
+      "prenom": "antonin",
+      "password": "test"
+    },
+    {
+      "prenom": "valerie",
+      "password": "test"
+    },
+    {
+      "prenom": "guillaume",
+      "password": "test"
+    }
+  ]
 }
