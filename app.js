@@ -1,13 +1,8 @@
 var express = require("express");
 // Lance le serveur par l'appelle d'express
 var app = express();
-var url = require("url");
 // Module qui permet de créer des templates
 var ejs = require("ejs");
-// Module pour créer un tableau des queries
-var querystring = require("querystring");
-// Permet d'agir sur les fichiers systeme
-var fs = require("fs");
 
 app.get("/", function(req, res) {
   res.setHeader("Content-Type", "text/html");
