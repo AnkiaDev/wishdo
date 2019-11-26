@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c43e5bff-9911-4c89-b3f6-b1980a737776" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/11.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/11.ejs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574757492639</updated>
-      <workItem from="1574757493794" duration="11576000" />
+      <workItem from="1574757493794" duration="12450000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout du fichier 11.ejs">
       <created>1574762774709</created>
@@ -113,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574776336582</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Modification de app.js">
+      <created>1574776583237</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1574776583237</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,6 +145,7 @@
     <MESSAGE value="Modification de data/json_users.json" />
     <MESSAGE value="Modification de 3.ejs" />
     <MESSAGE value="AJout de laurent.json dans data" />
-    <option name="LAST_COMMIT_MESSAGE" value="AJout de laurent.json dans data" />
+    <MESSAGE value="Modification de app.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modification de app.js" />
   </component>
 </project>
