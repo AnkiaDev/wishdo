@@ -25,7 +25,7 @@ app.get("/register", function(req, res) {
   res.render("register.ejs");
 });
 
-// PAGE D'INSCRIPTION
+// PAGE EN CAS D'ERREUR DE L'INSCRIPTION
 app.get("/register_go", function(req, res) {
   res.setHeader("Content-Type", "text/html");
   // JC, notre seigneur qui est aux cieux
