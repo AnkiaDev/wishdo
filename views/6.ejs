@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier ma wishlist</title>
+</head>
+<body>
+  <h1>Je modifie mon souhait</h1>
+  <form action="/user/{USERNAME}/wishlist" method="get">
+    <label for="wish-name">
+      Mon souhait
+      <input type="text" id="wish-name">
+    </label>
+    <label for="wish-price">
+      Le prix (en €)
+      <input type="number" min="0" id="wish-price">
+    </label>
+    <label for="wish-url">
+      Le lien de mon souhait
+      <input type="text" id="wish-url">
+    </label>
+    <input type="button" value="Retirer">
+    <input type="button" value="Modifier">
+  </form>
+  
+</body>
+</html>
