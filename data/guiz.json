@@ -1,0 +1,17 @@
+[
+  {
+    "nom": "Légo",
+    "url": "https://www.lego.com/fr-fr/product/millennium-falcon-75257",
+    "prix": 159.99
+  },
+  {
+    "nom": "Carte Graphique",
+    "url": "https://www.nvidia.com/fr-fr/geforce/graphics-cards/rtx-2080-ti/",
+    "prix": 1259.99
+  },
+  {
+    "nom": "Cyberpunk 2077",
+    "url": "https://www.cyberpunk.net/fr/fr/pre-order?gclid=Cj0KCQiAt_PuBRDcARIsAMNlBdpPcHJkgLtGV_2gHxH8OMisW7pQDNp_1vTL8EPVe-L9QuBBLd1b4vEaAigLEALw_wcB",
+    "prix": 59.99
+  }
+]
