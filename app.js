@@ -17,20 +17,27 @@ app.get("/", function(req, res) {
   res.render("1.ejs");
 });
 
-// Page par défaut
+// Page de traitement de la connexion
 app.get("/connexion.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
 
   // Code de Valérie
-  if (connexion() === true) {
-    // Il faut créer la fonction "connexion"
-    res.render("2.ejs");
-  } else {
-    res.render("error.ejs");
-  }
+  var params = querystring.parse(url.parse(req.url).query);
+  //si dans le tableau params les clés prenom et motdepasse sont présentes
 
-  // Renvoie le template de connexion
-  res.render("2.ejs");
+  if ("prenom" in params && "motdepasse" in params) {
+    //test des valeurs de prenom
+    //si vide, message d'erreur
+    if (params["prenom"] === "") {
+      res.setHeader("Content-Type", "text/html");
+      res.send("Tu n'as pas indiqué ton prénom");
+      //si on a bien un prénom
+    } else {
+      // Renvoie le template de connexion
+      res.setHeader("Content-Type", "text/html");
+      res.render("2.ejs", { utilisateur: params["prenom"] });
+    }
+  }
 });
 
 // Page d'inscription
