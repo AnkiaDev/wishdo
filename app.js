@@ -1,114 +1,163 @@
-var express = require("express");
+// Importation des modules nécessaires à l'application
+var express = require("express"); // Express
+var ejs = require("ejs"); // ejs
+var fs = require("fs"); // fs
 
-// Lance le serveur par l'appelle d'express
+
+// Déclaration que l'application est une instance de express()
 var app = express();
 
-// Module qui permet de créer des templates
-var ejs = require("ejs");
 
-// PAGE PAR DÉFAUT
+// ------ LES ROUTES --------
+// Page par défaut
 app.get("/", function(req, res) {
   res.setHeader("Content-Type", "text/html");
 
   // Renvoie le template de connexion
-  res.render("login.ejs");
+  res.render("1.ejs");
 });
 
-// PAGE D'INSCRIPTION
-app.get("/register", function(req, res) {
+// Page par défaut
+app.get("/connexion.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
-  // JC, notre seigneur qui est aux cieux
-  // que ton code soit sanctifié
-  // Amen ton code ici
+
+  // Code de Valérie
+  if(connexion() === true) { // Il faut créer la fonction "connexion"
+    res.render("2.ejs");
+  } else {
+    res.render("error.ejs");
+  }
+  
+  // Renvoie le template de connexion
+  res.render("2.ejs");
+});
+
+
+// Page d'inscription
+app.get("/register.html", function(req, res) {
+  res.setHeader("Content-Type", "text/html");
 
   // Renvoie le template d'inscription
-  res.render("register.ejs");
+  res.render("10.ejs");
+
 });
 
-// PAGE EN CAS D'ERREUR DE L'INSCRIPTION
-app.get("/register_go", function(req, res) {
+// Page de traitement de l'inscription
+app.get("/register_go.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
-  // JC, notre seigneur qui est aux cieux
-  // que ton code soit sanctifié
-  // Amen ton code ici
+
+  // Code de Jean-Claude
 
   // Renvoie le template d'inscription
   res.render("11.ejs");
+
 });
 
-// PAGE UNE FOIS CONNECTÉ
-app.get("/user/{USERNAME}", function(req, res) {
+// Menu principal
+app.get("/user/:username/menu.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
 
+  // Code de Valérie
+  // Qui doit récupérer le nom de l'utilisateur
+  
   // Renvoie le template une fois connecté
-  res.render("logged.ejs");
+  res.render("2.ejs");
 });
 
-// PAGE DE SA WISHLIST
-app.get("/user/{USERNAME}/wishlist", function(req, res) {
+// Wishlist de l'utilisateur
+app.get("/user/:username/wishlist.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
 
+  // Code de Guillaume
+  // Récupérer la liste des souhaits sous forme d'un objet JSON
+  // dans le dossier data en fonction du nom d'utilisateur.
+  // ex : data/guillaume.json
+  
   // Renvoie le template de sa wishlist
-  res.render("wishlist.ejs");
+  res.render("3.ejs", ma_liste);
 });
 
-// PAGE QUI AJOUTE UN ÉLÉMENT À SA WISHLIST
-app.get("/user/{USERNAME}/wishlist/add", function(req, res) {
+// Ajout d'un souhait
+app.get("/user/:username/add.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
   // Valérie Giscard, ton d'Estaing est d'écrire ton code ici
+  // N'est ce pas Lucas ?
 
   // Renvoie le template de l'ajout d'un élément de sa wishlist
-  res.render("wishlist-add.ejs");
+  res.render("4.ejs");
 });
 
-// PAGE QUI MODIFIE UN ÉLÉMENT À SA WISHLIST
-app.get("/user/{USERNAME}/wishlist/edit", function(req, res) {
+// Traitement de l'ajout d'un souhait
+app.get("/user/:username/add_go.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
-  // Luclass la classe, assieds-toi à ton pupitre, sors ton encrier
-  // et écrit ton code sur ce morceau de la feuille
+  // Valérie Giscard, ton d'Estaing est d'écrire ton code ici
+  // N'est ce pas Lucas ?
 
-  // Bernard, sors de ta coquille et surf sur la toile pour voir
-  // le code que tu viens d'écrire
+  // Renvoie le template de l'ajout d'un élément de sa wishlist
+  res.render("3.ejs");
+});
+
+// Modification d'un souhait
+app.get("/user/:username/edit.html", function(req, res) {
+  res.setHeader("Content-Type", "text/html");
 
   // Renvoie le template de la modification de sa wishlist
   res.render("6.ejs");
 });
 
-// PAGE QUI MONTRE LA LISTE DES AUTRES WISHLIST
-app.get("/user/{USERNAME}/otherwishlist", function(req, res) {
+
+// Traitement de la modification d'un souhait
+app.get("/user/:username/edit_go.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
+
+  // Code de traitement de Valérie
+
+  // Renvoie le template de la modification de sa wishlist
+  res.render("3.ejs");
+});
+
+// Liste des autres
+app.get("/user/:username/others.html", function(req, res) {
+  res.setHeader("Content-Type", "text/html");
+
+  // Code de Jean-Claude
 
   // Renvoie le template de la liste des autres wishlist
-  res.render("other-wishlist.ejs");
+  res.render("7.ejs");
 });
 
-// PAGE QUI MONTRE LA WISHLIST D'UN HUMANOÏDE SPÉCIFIQUE
-app.get("/user/{USERNAME}/otherwishlist/{OTHERUSERNAME}", function(req, res) {
+
+// Liste des souhaits d'un autre utilisateur
+app.get("/user/:username/others/:othername.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
 
+  // Code de Guillaume
+
   // Renvoie le template de la liste d'une autre personne humaine
-  res.render("other-wishlist-user.ejs");
+  res.render("8.ejs");
 });
 
-// PAGE QUI MONTRE UN ÉLÉMENT DE LA WISHLIST DE L'HUMANOÏDE
-// POUR À L'OCCASION LUI OFFRIR 😉
-app.get("/user/{USERNAME}/otherwishlist/{OTHERUSERNAME}/offer", function(req, res) {
+// Détails d'un souhait
+app.get("/user/:username/others/:othername/details.html", function(req, res) {
   res.setHeader("Content-Type", "text/html");
   // ICI C'EST POUR LE BIG BOSS, PAS TOUCHE!
 
+  // Code de Antonin !
+
   // Renvoie le template de la modification de sa wishlist
-  res.render("other-wishlist-user-offer.ejs");
+  res.render("9.ejs");
 });
 
-// ÇA C'EST LA PAGE AU CAS OÙ LA PERSONNE RENTRE UNE URL QUI NE CONVIENT PAS
-// Si y'a aucune route trouvée => utilise app.use
+// 404
 app.use(function(req, res, next) {
   res.setHeader("Content-Type", "text/html");
   // On revoie le status 404 (erreur 404)
   res.status(404);
-  res.render("error404.ejs");
+  res.render("5.ejs");
   console.error("Une erreur 404 a été retournée");
 });
 
 // Le serveur écoute sur le port => 8080
 app.listen(8080);
+
+// THE END !

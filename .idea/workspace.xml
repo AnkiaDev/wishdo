@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c43e5bff-9911-4c89-b3f6-b1980a737776" name="Default Changelist" comment="" />
+    <list default="true" id="c43e5bff-9911-4c89-b3f6-b1980a737776" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574757492639</updated>
-      <workItem from="1574757493794" duration="4603000" />
+      <workItem from="1574757493794" duration="8302000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout du fichier 11.ejs">
       <created>1574762774709</created>
@@ -69,7 +72,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574762774709</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Ajout de .idea">
+      <created>1574763199740</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1574763199740</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -88,6 +98,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Ajout du fichier 11.ejs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout du fichier 11.ejs" />
+    <MESSAGE value="Ajout de .idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout de .idea" />
   </component>
 </project>
