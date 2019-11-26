@@ -25,8 +25,19 @@ app.get("/register", function(req, res) {
   res.render("register.ejs");
 });
 
+// PAGE EN CAS D'ERREUR DE L'INSCRIPTION
+app.get("/register_go", function(req, res) {
+  res.setHeader("Content-Type", "text/html");
+  // JC, notre seigneur qui est aux cieux
+  // que ton code soit sanctifié
+  // Amen ton code ici
+
+  // Renvoie le template d'inscription
+  res.render("11.ejs");
+});
+
 // PAGE UNE FOIS CONNECTÉ
-app.get("/user/{USERNAME}.html", function(req, res) {
+app.get("/user/{USERNAME}", function(req, res) {
   res.setHeader("Content-Type", "text/html");
 
   // Renvoie le template une fois connecté
@@ -34,7 +45,7 @@ app.get("/user/{USERNAME}.html", function(req, res) {
 });
 
 // PAGE DE SA WISHLIST
-app.get("/user/{USERNAME}/wishlist.html", function(req, res) {
+app.get("/user/{USERNAME}/wishlist", function(req, res) {
   res.setHeader("Content-Type", "text/html");
 
   // Renvoie le template de sa wishlist
@@ -42,7 +53,7 @@ app.get("/user/{USERNAME}/wishlist.html", function(req, res) {
 });
 
 // PAGE QUI AJOUTE UN ÉLÉMENT À SA WISHLIST
-app.get("/user/{USERNAME}/wishlist/add.html", function(req, res) {
+app.get("/user/{USERNAME}/wishlist/add", function(req, res) {
   res.setHeader("Content-Type", "text/html");
   // Valérie Giscard, ton d'Estaing est d'écrire ton code ici
 
@@ -51,7 +62,7 @@ app.get("/user/{USERNAME}/wishlist/add.html", function(req, res) {
 });
 
 // PAGE QUI MODIFIE UN ÉLÉMENT À SA WISHLIST
-app.get("/user/{USERNAME}/wishlist/edit.html", function(req, res) {
+app.get("/user/{USERNAME}/wishlist/edit", function(req, res) {
   res.setHeader("Content-Type", "text/html");
   // Luclass la classe, assieds-toi à ton pupitre, sors ton encrier
   // et écrit ton code sur ce morceau de la feuille
@@ -64,7 +75,7 @@ app.get("/user/{USERNAME}/wishlist/edit.html", function(req, res) {
 });
 
 // PAGE QUI MONTRE LA LISTE DES AUTRES WISHLIST
-app.get("/user/{USERNAME}/otherwishlist.html", function(req, res) {
+app.get("/user/{USERNAME}/otherwishlist", function(req, res) {
   res.setHeader("Content-Type", "text/html");
 
   // Renvoie le template de la liste des autres wishlist
@@ -72,16 +83,16 @@ app.get("/user/{USERNAME}/otherwishlist.html", function(req, res) {
 });
 
 // PAGE QUI MONTRE LA WISHLIST D'UN HUMANOÏDE SPÉCIFIQUE
-app.get("/user/{USERNAME}/otherwishlist/{OTHERUSERNAME}.html", function(req, res) {
+app.get("/user/{USERNAME}/otherwishlist/{OTHERUSERNAME}", function(req, res) {
   res.setHeader("Content-Type", "text/html");
-  
+
   // Renvoie le template de la liste d'une autre personne humaine
   res.render("other-wishlist-user.ejs");
 });
 
 // PAGE QUI MONTRE UN ÉLÉMENT DE LA WISHLIST DE L'HUMANOÏDE
 // POUR À L'OCCASION LUI OFFRIR 😉
-app.get("/user/{USERNAME}/otherwishlist/{OTHERUSERNAME}/offer.html", function(req, res) {
+app.get("/user/{USERNAME}/otherwishlist/{OTHERUSERNAME}/offer", function(req, res) {
   res.setHeader("Content-Type", "text/html");
   // ICI C'EST POUR LE BIG BOSS, PAS TOUCHE!
 
