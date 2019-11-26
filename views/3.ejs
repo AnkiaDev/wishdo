@@ -19,6 +19,11 @@
     <main>
       <button>Ajouter un Wish</button>
       <!--Ajout de la fonction ajouter un wish-->
+
+      <% utilisateurs.forEach(function(user){ %>
+      <li><%= user.prenom %></li>
+      <% }) %>
+
       <ul>
         <li>
           <a href="">Lien vers le produit</a>
