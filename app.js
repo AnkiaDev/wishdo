@@ -1,5 +1,6 @@
 // Importation des modules nécessaires à l'application
 var express = require("express"); // Express
+var ejs = require("ejs"); // ejs
 var fs = require("fs"); // fs
 
 // Déclaration que l'application est une instance de express()
