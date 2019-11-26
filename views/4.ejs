@@ -2,21 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Add a wish</title>
   </head>
   <body>
     <h2>Ajouter une wish</h2>
-    <form action="/user/{USERNAME}/wishlist">
-      <label>Nom</label><br />
-      <input type="text" name="nom" /><br />
-      <label>Prix</label><br />
-      <input type="number" name="prix" /><br />
-      <label>URL</label><br />
-      <input type="number" name="URL" /><br />
+    <form action="/user/{USERNAME}/wishlist" method="get">
+      <label for="nom">
+        Mon souhait
+        <input type="text" name="nom" required />
+      </label>
+      <label for="prix">
+        Le prix (en €)
+        <input type="number" min="0" name="prix" />
+      </label>
+      <label for="url">
+        Le lien de mon souhait
+        <input type="text" name="url" />
+      </label>
       <button type="submit">Ajouter</button>
-      <button type="button">Fermer</button>
+      <button>Fermer</button>
     </form>
   </body>
 </html>
